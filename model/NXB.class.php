@@ -1,7 +1,7 @@
 <?php
-class Brand extends DB {
+class NXB extends DB {
     public function getAll() {
-        $sql = "SELECT * FROM brand";
+        $sql = "SELECT * FROM nxb";
         return $this->select($sql); 
     }
 }

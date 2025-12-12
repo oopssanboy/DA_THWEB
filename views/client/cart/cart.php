@@ -8,7 +8,7 @@
     ?>
 <?php
     $data = new Cart();
-    $ma_kh = $_SESSION['user_info'][0]['ma_kh'];
+    $ma_kh = $_SESSION['user_info']['ma_kh'];
     $list_cart = $data->getAllcart_info_byid($ma_kh);
     $sum_money= 0;
     $sum_product= 0;
@@ -79,10 +79,10 @@
                 <p><?php echo $sum_product; ?> Sản phẩm</p>
                 <h3>Tổng tiền: <?php echo number_format($sum_money); ?><sup>đ</sup></h3>
                 <h3>Thông tin giao hàng</h3>
-                <input type="text" name="ten_kh" placeholder="Nhập họ và tên" value="<?php echo$_SESSION['user_info'][0]['ten_kh']; ?>"required>
-                <input type="tel" name="sdt" placeholder="Nhập số điện thoại" value="<?php echo$_SESSION['user_info'][0]['sdt']; ?>" required><br>
-                <input type="email" name="email" placeholder="Nhập email" value="<?php echo$_SESSION['user_info'][0]['email']; ?>" required>
-                <input type="text" name="diachi" placeholder="Nhập địa chỉ" value="<?php echo$_SESSION['user_info'][0]['dia_chi']; ?>" required><br>
+                <input type="text" name="ten_kh" placeholder="Nhập họ và tên" value="<?php echo$_SESSION['user_info']['ten_kh']; ?>"required>
+                <input type="tel" name="sdt" placeholder="Nhập số điện thoại" value="<?php echo$_SESSION['user_info']['sdt']; ?>" required><br>
+                <input type="email" name="email" placeholder="Nhập email" value="<?php echo$_SESSION['user_info']['email']; ?>" required>
+                <input type="text" name="diachi" placeholder="Nhập địa chỉ" value="<?php echo$_SESSION['user_info']['dia_chi']; ?>" required><br>
                 
                 <h3>Ghi chú đơn hàng</h3>
                 

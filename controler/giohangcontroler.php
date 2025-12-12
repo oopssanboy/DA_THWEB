@@ -9,12 +9,12 @@ if (!isset($_SESSION['user_login'])){
 require_once __DIR__ . '/../autoload.php';
 if($_SERVER['REQUEST_METHOD'] =='POST' && isset($_POST['ma_sp'])){
     $ma_sp = $_POST['ma_sp'];
-    $ma_kh = $_SESSION['user_info'][0]['ma_kh'];
-    $color = $_POST['color'];
-    $size = $_POST['size'];
+    $ma_kh = $_SESSION['user_info']['ma_kh'];
+    $phien_ban = $_POST['phien_ban'];
+    $chat_lieu = $_POST['chat_lieu'];
     $soluong = $_POST['soluong'];
     $cart = new Cart();
-    $cart->add($ma_kh,$ma_sp,$size,$color,$soluong);
+    $cart->add($ma_kh,$ma_sp,$chat_lieu,$phien_ban,$soluong);
     header("location:../views/client/product/product.php?id=$ma_sp");
     exit;
 }else if(isset($_GET['action'])&& $_GET['action']=='delete'){
@@ -39,7 +39,7 @@ else if (isset($_GET['action']) && $_GET['action'] == 'update_qty') {
             $info_product = $dacdiem_sp->getAll_byid_sp($current_item['ma_sp']);
             $tonkho = 0;
             foreach ($info_product as $pr) {
-                if ($current_item['size'] == $pr['size'] && $current_item['loai_mau'] == $pr['loai_mau']) {
+                if ($current_item['chat_lieu'] == $pr['chat_lieu'] && $current_item['phien_ban'] == $pr['phien_ban']) {
                     $tonkho = $pr['soluong_tonkho'];
                     break;
                 }
@@ -90,7 +90,7 @@ else if($_SERVER['REQUEST_METHOD'] =='POST' && $_GET['action']=='thanhtoan'){
         foreach($list_cart as $it){
             $info_product = $dacdiem_sp->getAll_byid_sp($it['ma_sp']);
             foreach($info_product as $pr){
-                if($it['size']==$pr['size'] && $it['loai_mau'] == $pr['loai_mau']){
+                if($it['chat_lieu']==$pr['chat_lieu'] && $it['phien_ban'] == $pr['phien_ban']){
                     if(($pr['soluong_tonkho'] - $it['soluong']) >= 0){
                         $flag++;
                     }else{
@@ -103,8 +103,8 @@ else if($_SERVER['REQUEST_METHOD'] =='POST' && $_GET['action']=='thanhtoan'){
         if($flag > 0){
             $ma_dh = $order->add_order($_SESSION['user_order'][0],$_SESSION['user_order'][1],$_SESSION['user_order'][2],$_SESSION['user_order'][3],$_SESSION['user_order'][4],$_SESSION['user_order'][5],$_SESSION['user_order'][6],$_SESSION['user_order'][7],$_SESSION['user_order'][8],$_SESSION['user_order'][9],$_SESSION['user_order'][10]);
             foreach($list_cart as $item){
-                $order_item->add_order_item($item['ma_sp'],$ma_dh, $item['size'],$item['soluong'],$item['giasp'],$item['loai_mau']);
-                $dacdiem_sp->update_tonkho($item['ma_sp'],$item['size'],$item['loai_mau'],$item['soluong'],'giam');
+                $order_item->add_order_item($item['ma_sp'],$ma_dh, $item['chat_lieu'],$item['soluong'],$item['giasp'],$item['phien_ban']);
+                $dacdiem_sp->update_tonkho($item['ma_sp'],$item['chat_lieu'],$item['phien_ban'],$item['soluong'],'giam');
             }
 
             $data->del_byid_kh($ma_kh);
@@ -120,7 +120,7 @@ else if($_SERVER['REQUEST_METHOD'] =='POST' && $_GET['action']=='thanhtoan'){
         foreach($list_cart as $it){
             $info_product = $dacdiem_sp->getAll_byid_sp($it['ma_sp']);
             foreach($info_product as $pr){
-                if($it['size']==$pr['size'] && $it['loai_mau'] == $pr['loai_mau']){
+                if($it['chat_lieu']==$pr['chat_lieu'] && $it['phien_ban'] == $pr['phien_ban']){
                     if(($pr['soluong_tonkho'] - $it['soluong']) >= 0){
                         $flag++;
                     }else{
@@ -147,8 +147,8 @@ else if($_SERVER['REQUEST_METHOD'] =='POST' && $_GET['action']=='thanhtoan'){
     $flag = 0;
     $ma_dh = $order->add_order($_SESSION['user_order'][0],$_SESSION['user_order'][1],$_SESSION['user_order'][2],$_SESSION['user_order'][3],$_SESSION['user_order'][4],$_SESSION['user_order'][5],$_SESSION['user_order'][6],$_SESSION['user_order'][7],$_SESSION['user_order'][8],$_SESSION['user_order'][9],$_SESSION['user_order'][10]);
     foreach($list_cart as $item){
-        $order_item->add_order_item($item['ma_sp'],$ma_dh, $item['size'],$item['soluong'],$item['giasp'],$item['loai_mau']);
-        $dacdiem_sp->update_tonkho($item['ma_sp'],$item['size'],$item['loai_mau'],$item['soluong'],'giam');
+        $order_item->add_order_item($item['ma_sp'],$ma_dh, $item['chat_lieu'],$item['soluong'],$item['giasp'],$item['phien_ban']);
+        $dacdiem_sp->update_tonkho($item['ma_sp'],$item['chat_lieu'],$item['phien_ban'],$item['soluong'],'giam');
     }
     $data->del_byid_kh($_SESSION['user_order'][0]);
     header('location:../../../index.php');
