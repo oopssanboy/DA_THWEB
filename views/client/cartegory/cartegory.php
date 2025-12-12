@@ -4,15 +4,15 @@ if (!isset($_SESSION))
     session_start();
 
 $category_model = new Category();
-$product_model = new Giay();
-$brand_model = new Brand();
+$product_model = new Sach();
+$brand_model = new NXB();
 
 $ma_danhmuc = isset($_GET['ma_danhmuc']) ? $_GET['ma_danhmuc'] : '';
 $phan_loai = isset($_GET['phan_loai']) ? $_GET['phan_loai'] : '';
 $sap_xep = isset($_GET['sap_xep']) ? $_GET['sap_xep'] : '';
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
-$brand_selected = isset($_GET['brand']) ? $_GET['brand'] : [];
+$brand_selected = isset($_GET['nxb']) ? $_GET['nxb'] : [];
 $size = isset($_GET['size']) ? $_GET['size'] : '';
 $mau_sac = isset($_GET['mau_sac']) ? $_GET['mau_sac'] : '';
 $gia = isset($_GET['gia']) ? $_GET['gia'] : '';
@@ -31,9 +31,9 @@ if ($keyword != '' || $gia != '') {
 }
 
 $list_brand = $brand_model->getAll();
-//$list_product = $product_model->loc_san_pham($ma_danhmuc, $phan_loai, $sap_xep, $brand_selected, $size, $mau_sac, $keyword, $gia);
+$list_product = $product_model->loc_san_pham($ma_danhmuc, $phan_loai, $sap_xep, $brand_selected, $size, $mau_sac, $keyword, $gia);
 
-$list_product = $product_model->timkiem($keyword,$gia);
+// $list_product = $product_model->timkiem($keyword,$gia);
 
 
 ?>
@@ -82,39 +82,53 @@ $list_product = $product_model->timkiem($keyword,$gia);
                             <ul class="filter-list">
                                 <li>
                                     <label>
-                                        <input type="radio" name="phan_loai" value="" onchange="this.form.submit()"
-                                        <?php if ($phan_loai == '') echo 'checked'; ?>> 
+                                        <input type="radio" name="phan_loai" value="Tất cả" onchange="this.form.submit()"
+                                        <?php if ($phan_loai == 'Tất cả') echo 'checked'; ?>> 
                                         Tất cả
                                     </label>
                                 </li>
                                 <li>
                                     <label>
-                                        <input type="radio" name="phan_loai" value="Nam" onchange="this.form.submit()" 
-                                        <?php if ($phan_loai == 'Nam') echo 'checked'; ?>> 
-                                        Nam
+                                        <input type="radio" name="phan_loai" value="Người lớn" onchange="this.form.submit()" 
+                                        <?php if ($phan_loai == 'Người lớn') echo 'checked'; ?>> 
+                                        Người lớn
                                     </label>
                                 </li>
                                 <li>
                                     <label>
-                                        <input type="radio" name="phan_loai" value="Nữ" onchange="this.form.submit()"
-                                        <?php if ($phan_loai == 'Nữ') echo 'checked'; ?>> 
-                                        Nữ
+                                        <input type="radio" name="phan_loai" value="Thanh niên" onchange="this.form.submit()"
+                                        <?php if ($phan_loai == 'Thanh niên') echo 'checked'; ?>> 
+                                        Thanh niên
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="radio" name="phan_loai" value="Học sinh" onchange="this.form.submit()"
+                                        <?php if ($phan_loai == 'Học sinh') echo 'checked'; ?>> 
+                                        Học sinh
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="radio" name="phan_loai" value="Thiếu nhi" onchange="this.form.submit()"
+                                        <?php if ($phan_loai == 'Thiếu nhi') echo 'checked'; ?>> 
+                                        Thiếu nhi
                                     </label>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="filter-group">
-                            <h3 class="filter-title">THƯƠNG HIỆU</h3>
+                            <h3 class="filter-title">NHÀ XUẤT BẢN</h3>
                             <ul class="filter-list scroll-box">
                                 <?php if (!empty($list_brand)) { ?>
                                     <?php foreach ($list_brand as $br) { ?>
-                                        <?php $checked = in_array($br['ma_th'], (array) $brand_selected) ? 'checked' : ''; ?>
+                                        <?php $checked = in_array($br['ma_nxb'], (array) $brand_selected) ? 'checked' : ''; ?>
                                         <li>
                                             <label>
-                                                <input type="checkbox" name="brand[]" value="<?php echo $br['ma_th']; ?>"
+                                                <input type="checkbox" name="brand[]" value="<?php echo $br['ma_nxb']; ?>"
                                                     onchange="this.form.submit()" <?php echo $checked; ?>>
-                                                <?php echo $br['tenth']; ?>
+                                                <?php echo $br['ten_nxb']; ?>
                                             </label>
                                         </li>
                                     <?php } ?>
@@ -140,10 +154,10 @@ $list_product = $product_model->timkiem($keyword,$gia);
                         </div>
 
                         <div class="filter-group">
-                            <h3 class="filter-title">MÀU SẮC</h3>
+                            <h3 class="filter-title">PHIÊN BẢN</h3>
                             <ul class="filter-list">
                                 <?php
-                                $colors = ['Đen', 'Trắng', 'Đỏ', 'Xanh', 'Vàng', 'Xám'];
+                                $colors = ['Tiếng việt', 'Tiếng anh', 'Bản đặc biệt', 'Tái bản 2024', 'Có chữ ký', 'Thường','Bản kỹ niệm'];
                                 foreach ($colors as $col) {
                                 ?>
                                     <li>

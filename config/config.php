@@ -1,13 +1,13 @@
 <?php
 $configDB = array();
 $configDB["host"] 		= "localhost";
-$configDB["database"]	= "ttcn_bangiay";
+$configDB["database"]	= "store_book";
 $configDB["username"] 	= "root";
 $configDB["password"] 	= "";
 define("HOST", "localhost");
-define("DB_NAME", "ttcn_bangiay");
+define("DB_NAME", "store_book"); 
 define("DB_USER", "root");
 define("DB_PASS", "");
 define('ROOT', dirname(dirname(__FILE__) ) );
-//Thu muc tuyet doi truoc cua config; c:/wamp/www/lab/
-define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/lab/");//dia chi website
+define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/DA_THWEB/");
+?>

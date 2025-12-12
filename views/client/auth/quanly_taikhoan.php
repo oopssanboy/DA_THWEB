@@ -79,7 +79,7 @@ $user_info = $user->get_user_byid($_SESSION['user_info']['ma_kh'])[0];
                     </tr>
                    <?php
                         $data = new Order();
-                        $list_order = $data->getAll_Byid_kh($_SESSION['user_info'][0]['ma_kh']);
+                        $list_order = $data->getAll_Byid_kh($_SESSION['user_info']['ma_kh']);
                         if(count($list_order) > 0 )
                         foreach ($list_order as $oder){
                             ?>

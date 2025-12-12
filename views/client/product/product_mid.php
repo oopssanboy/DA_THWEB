@@ -14,7 +14,7 @@ require_once 'autoload.php';
 <body>
     <div class="box_mid ">
         <?php
-            $product = new Giay();
+            $product = new Sach();
             $list_product = $product->getAll_limit8();
         ?>
         <div class="cartegory_right_content " >

@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../../autoload.php';
     <?php
         if (isset($_GET['id'])){
             $id = $_GET['id'];
-            $data = new Giay();
+            $data = new Sach();
             $product_detail = $data->getByid($id);
             $product_info = $data->getAll_dacdiem_byid($id);
             
@@ -41,10 +41,10 @@ require_once __DIR__ . '/../../../autoload.php';
                         <img src="/images/<?php echo $product['link_hinhanh'] ?>" alt="">
                     </div>
                     <div class="product_content_left_small_img">
-                        <img src="/images/giay_1.png" alt="">
-                        <img src="/images/giay_2.png" alt="">
-                        <img src="/images/giay_3.png" alt="">
-                        <img src="/images/giay_4.png" alt="">
+                        <img src="/images/sach_1.png" alt="">
+                        <img src="/images/sach_2.png" alt="">
+                        <img src="/images/sach_3.png" alt="">
+                        <img src="/images/sach_4.png" alt="">
                     </div>
                 </div>
                 
@@ -58,26 +58,26 @@ require_once __DIR__ . '/../../../autoload.php';
                         <p>Giá: <?php echo number_format($product['giasp']); ?><sup>đ</sup></p>
                     </div>
                     <div class="product_content_right_product_color">
-                        <p><span style="font-weight:bold;">Màu sắc</span>: <?php
+                        <p><span style="font-weight:bold;">Phiên bản</span>: <?php
                             foreach($product_info as $item){
                                 
-                           echo '<span><input type="radio" name="color" value="' .$item['loai_mau']  .'" checked>'. $item['loai_mau'] .' &nbsp;</span>';
+                           echo '<span><input type="radio" name="color" value="' .$item['phien_ban']  .'" checked>'. $item['phien_ban'] .' &nbsp;</span>';
                             
                             }
                             ?><span style="color:red;">*</span></p>
                     </div>
                     <div class="product_content_right_product_size">
-                        <p style="font-weight:bold;">Size:</p>
+                        <p style="font-weight:bold;">Chất liệu:</p>
                         <div class="size">
                             <?php
                             foreach($product_info as $item){
                                 
-                           echo '<span><input type="radio" name="size" value="' .$item['size']  .'" checked>'. $item['size'] .'</span>';
+                           echo '<span><input type="radio" name="chat_lieu" value="' .$item['chat_lieu']  .'" checked>'. $item['chat_lieu'] .'</span>';
                             
                             }
                             ?>
                         </div>
-                        <p style="color:red;">Vui lòng chọn size</p>
+                        <p style="color:red;">Vui lòng chọn chất liệu</p>
                     </div>
                     <div class="quantity">
                         <p style="font-weight:bold;">Số lượng:</p>

@@ -99,7 +99,52 @@
 }
 
 .button_login_face_google{
-    
+    display: flex;
+    gap: 15px; 
+    flex-direction: row;
+
+}
+.social-btn {
+    flex: 1; /* Chia đều chiều rộng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 8px; /* Bo góc giống nút chính */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* --- Style riêng cho nút Google --- */
+.google-btn {
+    background-color: #ffffff;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.google-btn:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Style riêng cho nút Facebook --- */
+.facebook-btn {
+    background-color: #1877F2; /* Màu xanh chuẩn Facebook */
+    color: white;
+}
+
+.facebook-btn:hover {
+    background-color: #166fe5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .register-link {
     text-align: center;
