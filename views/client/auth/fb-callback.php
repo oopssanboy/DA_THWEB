@@ -2,19 +2,7 @@
 if (!isset($_SESSION)) session_start();
 require_once __DIR__ . '/../../../autoload.php';
 $user = new User();
-$fb = new Facebook\Facebook([
-  'app_id' => '1290514812929698', 
-  'app_secret' => 'de94d39c2646632fb85d7d224ecede58',
-  'default_graph_version' => 'v19.0',
-  ]);
 
-$helper = $fb->getRedirectLoginHelper();
-
-try {
-  $accessToken = $helper->getAccessToken();
-} catch(Exception $e) {
-  exit('Lỗi SDK: ' . $e->getMessage());
-}
 
 if (! isset($accessToken)) {
   header('location: ../../../views/client/auth/login.html');
