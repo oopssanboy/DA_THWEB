@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register HTML</title>
+    <link rel="stylesheet" href="/views/client/css/auth.css">
+
+</head>
+<body>
+   <form action="register.php" method="post">
+        <div class="login">
+            <div class="login-container">
+                
+                <div class="login-header">
+                    <h2>REGISTER</h2>
+                </div>
+                
+                    <div class="input-group">
+                        <input type="text" name="user" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="pass" placeholder="Mật khẩu" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="passconfirm" placeholder="Xác nhận mật khẩu" required>
+                    </div>
+                    
+                    <button type="submit" class="login-button">Đăng ký</button>
+                    <div class="register-link">
+                        Bạn đã có tài khoản? <a href="/views/client/auth/login.html">Đăng nhập</a>
+                    </div>
+               
+            </div>
+        </div>
+    </form>
+</body>
+</html>

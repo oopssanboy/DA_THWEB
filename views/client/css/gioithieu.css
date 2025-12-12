@@ -1,0 +1,12 @@
+.gioithieu{
+    height: 600px;
+    background-color: white;
+    border-radius: 15px;
+    align-items: center;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.gioithieu p,h1{
+    padding: 25px 0 0 25px;
+}
